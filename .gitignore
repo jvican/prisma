@@ -1,17 +1,15 @@
-.idea
-node_modules
 .DS_Store
 
 *.class
 *.log
 .coursier
-.envrc
+
 .ivy2
 
 # Idea
-.iml
 .idea
 .idea_modules
+*.iml
 
 # sbt specific
 .sbt
@@ -21,9 +19,11 @@ lib_managed/
 src_managed/
 project/boot/
 project/plugins/project/
+ensime.sbt
 
 # Scala-IDE specific
 .scala_dependencies
+
 .ensime
 .ensime_cache
 
@@ -34,7 +34,18 @@ project/plugins/project/
 
 # buildkite artifacts
 buildkite-script-*
-.envrc
 
-# VSCode specific
-.vscode/
+/prisma.yml
+
+**/libjdbc_native*
+**/libjwt_native*
+.buildkite/scripts/docker-native/prisma-native
+
+*svm-heapdump-*
+out
+
+# sqlite
+*.db
+db/*.db
+db/*.sqlite
+

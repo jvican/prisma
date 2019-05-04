@@ -1,3 +1,0 @@
-schemaPath: toplevel-schema.graphql
-extensions:
-  prisma: prisma.yml

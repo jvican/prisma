@@ -1,7 +1,0 @@
-node_modules
-dist
-.idea
-yarn-error.log
-*.tar.gz
-prisma
-.env
