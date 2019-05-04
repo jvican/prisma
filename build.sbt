@@ -135,7 +135,7 @@ lazy val prismaNative = imageProject("prisma-native", "prisma-native")
       "--no-server",
       "-H:+AllowVMInspection"
     ),
-    unmanagedJars in Compile += file(sys.env("GRAAL_HOME") + "/jre/lib/svm/builder/svm.jar"),
+    libraryDependencies += "com.oracle.substratevm" % "svm" % "1.0.0-rc16",
     mappings in (Compile, packageBin) ~= { _.filter { case (_, path) =>
       val exclude = path.contains("mariadb") || path.contains("org.postgresql") || path.contains("micrometer") || path.contains("org.LatencyUtils") || path.contains("io.prometheus")
       if (exclude) {
@@ -157,7 +157,7 @@ lazy val schemaInferrerBin = imageProject("schema-inferrer-bin", "schema-inferre
       "-H:+AllowVMInspection",
       s"-H:CLibraryPath=${absolute("libs/jwt-native/src/main/resources")}",
     ),
-    unmanagedJars in Compile += file(sys.env("GRAAL_HOME") + "/jre/lib/svm/builder/svm.jar")
+    libraryDependencies += "com.oracle.substratevm" % "svm" % "1.0.0-rc16",
   )
 
 def absolute(relativePathToProjectRoot: String) = {
@@ -346,7 +346,7 @@ lazy val jdbcNative = libProject("jdbc-native")
     scalaTest,
     playJson
   ), // todo skip compile if no native image / graal present
-  unmanagedJars in Compile += file(sys.env("GRAAL_HOME") + "/jre/lib/boot/graal-sdk.jar"))
+  libraryDependencies += "org.graalvm.sdk" % "graal-sdk" % "1.0.0-rc16")
 
 lazy val jwtNative = libProject("jwt-native")
   .dependsOn(logging)
@@ -355,7 +355,7 @@ lazy val jwtNative = libProject("jwt-native")
     scalaTest,
     playJson
   ) ++ jooq, // todo skip compile if no native image / graal present
-  unmanagedJars in Compile += file(sys.env("GRAAL_HOME") + "/jre/lib/boot/graal-sdk.jar"))
+  libraryDependencies += "org.graalvm.sdk" % "graal-sdk" % "1.0.0-rc16")
 
 lazy val gcValues = libProject("gc-values")
   .settings(libraryDependencies ++= Seq(
@@ -466,7 +466,7 @@ lazy val prismaRsBinding = libProject("prisma-rs-binding")
       scalapb.gen() -> (sourceManaged in Compile).value
     ),
     libraryDependencies ++= Seq(jna),
-    unmanagedJars in Compile += file(sys.env("GRAAL_HOME") + "/jre/lib/boot/graal-sdk.jar")
+    libraryDependencies += "org.graalvm.sdk" % "graal-sdk" % "1.0.0-rc16"
   )
 
 
