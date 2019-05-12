@@ -2,7 +2,7 @@ import sbt._
 
 val buildNativeLib = TaskKey[Unit]("buildNativeLib", "builds the Prisma native lib")
 buildNativeLib := {
-  if(!sys.env.get("SKIP_RUST_BUILD").contains("1")){
+  if(false){
     import sys.process._
     println("Building Prisma native lib.")
 
